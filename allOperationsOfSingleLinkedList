@@ -4,7 +4,8 @@ using namespace std;
 
 //creating a class that will hold a data and a pointer to the next node
 
-class node{
+class node
+{
 
 public:
 
@@ -17,7 +18,8 @@ public:
 };
 
 
-class linkedList{
+class linkedList
+{
 
 
 public:
@@ -71,7 +73,7 @@ public:
     }
 
 
-   // traversing the whole linked list
+    // traversing the whole linked list
 
     void traverse()
     {
@@ -166,7 +168,7 @@ public:
 
 
 
-     //deleting a value from the head
+    //deleting a value from the head
 
     void deleteAtHead()
     {
@@ -255,26 +257,26 @@ int main()
 
     ll.insertAtAnIndex(23,2);
 
-     cout<<"the new linked list after an insertion is--> "<<endl;
+    cout<<"the new linked list after an insertion is--> "<<endl;
 
-     ll.traverse();
+    ll.traverse();
 
-     cout<<endl;
+    cout<<endl;
 
-       cout<<"the new linked list after head deletion is--> "<<endl;
+    cout<<"the new linked list after head deletion is--> "<<endl;
 
-       ll.deleteAtHead();
+    ll.deleteAtHead();
 
-       ll.traverse();
+    ll.traverse();
 
-       ll.deleteAtAnyIndex(2);
+    ll.deleteAtAnyIndex(2);
 
-       cout<<endl;
+    cout<<endl;
 
-       cout<<"the new linked list after any random index deletion is--> "<<endl;
+    cout<<"the new linked list after any random index deletion is--> "<<endl;
 
-       ll.traverse();
+    ll.traverse();
 
-   return 0;
+    return 0;
 
 }
