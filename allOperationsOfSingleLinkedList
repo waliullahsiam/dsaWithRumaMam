@@ -1,0 +1,259 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+class node{
+
+public:
+
+    int data;
+    node* nxt;
+
+
+
+
+};
+
+
+class linklist{
+
+
+public:
+
+    node* head;
+    int sz;
+
+    linklist()
+    {
+        head=NULL;
+
+        sz=0;
+    }
+
+
+
+    node* create(int val)
+    {
+        node* a=new node;
+        sz++;
+
+        a->data=val;
+
+        a->nxt=NULL;
+
+
+        return a;
+    }
+
+    void insertvalue(int val)
+    {
+        node* a=create(val);
+
+        if(head==NULL)
+        {
+
+            head=a;
+            return ;
+        }
+
+
+        a->nxt=head;
+
+        head=a;
+
+    }
+
+
+    void traverse()
+    {
+        if(head==NULL)
+        {
+            cout<<"No value to show\n";
+            return ;
+        }
+
+
+        node* a=head;
+
+        while(a!=NULL)
+        {
+            cout<<a->data<<" ";
+
+            a=a->nxt;
+
+        }
+
+
+
+    }
+
+    void reverse2(node* a)
+    {
+        if(a== NULL)
+        {
+            return ;
+        }
+
+        reverse2(a->nxt);
+
+        cout<<a->data<<" ";
+    }
+
+    void reverse()
+    {
+        reverse2(head);
+
+    }
+
+    int length()
+    {
+        return sz;
+    }
+
+
+    void insertafteranindex(int data,int idx)
+    {
+        sz++;
+        if(idx==0)
+        {
+            insertvalue(data);
+            return ;
+        }
+
+        int current_idx=0;
+
+        node* a=head;
+
+        while(current_idx!=idx-1)
+        {
+            a=a->nxt;
+
+            current_idx++;
+        }
+
+
+
+        node* b=create(data);
+
+        b->nxt=a->nxt;
+
+        a->nxt=b;
+
+
+
+
+
+    }
+
+
+
+
+    void deleteAtHead()
+    {
+        if(head==NULL)
+        {
+            cout<<"NO value to delete\n";
+
+            return ;
+        }
+
+
+        node* a=head;
+
+        head=a->nxt;
+
+        delete a;
+
+    }
+
+    void deleteAtAnyIndex(int idx)
+    {
+        if(idx==0)
+        {
+            deleteAtHead();
+            return ;
+        }
+
+
+        node* a=head;
+
+        int curr_idx=0;
+
+        while(curr_idx!=idx-1)
+        {
+            a=a->nxt;
+            curr_idx++;
+
+        }
+
+        node*b =a->nxt;
+
+        a->nxt=b->nxt;
+
+        delete b;
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+};
+int main()
+{
+
+    linklist ll;
+
+    ll.insertvalue(5);
+    ll.insertvalue(6);
+    ll.insertvalue(7);
+    ll.insertvalue(8);
+    ll.insertvalue(9);
+    ll.insertvalue(10);
+
+    ll.traverse();
+    cout<<endl;
+
+
+    cout<<"the reverse of the linked list is--> "<<endl;
+
+    ll.reverse();
+
+    cout<<endl;
+    ll.insertafteranindex(23,2);
+
+     cout<<"the new linked list is--> "<<endl;
+
+     ll.traverse();
+
+     cout<<endl;
+
+       cout<<"the new linked list after head deletion is--> "<<endl;
+
+       ll.deleteAtHead();
+
+       ll.traverse();
+
+       ll.deleteAtAnyIndex(2);
+       
+       cout<<endl;
+       
+       cout<<"the new linked list after any random index deletion is--> "<<endl;
+
+       ll.traverse();
+
+
+   // cout<<ll.length();
+   
+   return 0;
+
+}
