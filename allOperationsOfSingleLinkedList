@@ -2,6 +2,8 @@
 
 using namespace std;
 
+//creating a class that will hold a data and a pointer to the next node
+
 class node{
 
 public:
@@ -15,27 +17,30 @@ public:
 };
 
 
-class linklist{
+class linkedList{
 
 
 public:
 
     node* head;
-    int sz;
 
-    linklist()
+
+    linkedList()
     {
         head=NULL;
 
-        sz=0;
+
     }
 
 
 
-    node* create(int val)
+    //creating a new node
+
+
+    node* createANewNode(int val)
     {
         node* a=new node;
-        sz++;
+
 
         a->data=val;
 
@@ -45,9 +50,11 @@ public:
         return a;
     }
 
-    void insertvalue(int val)
+    //inserting a value at head
+
+    void insertAValueAtHead(int val)
     {
-        node* a=create(val);
+        node* a=createANewNode(val);
 
         if(head==NULL)
         {
@@ -63,6 +70,8 @@ public:
 
     }
 
+
+   // traversing the whole linked list
 
     void traverse()
     {
@@ -87,6 +96,10 @@ public:
 
     }
 
+
+    // using recursion and a leap of faith to print the linked list in reverse order
+
+
     void reverse2(node* a)
     {
         if(a== NULL)
@@ -99,24 +112,27 @@ public:
         cout<<a->data<<" ";
     }
 
+
+
+
     void reverse()
     {
         reverse2(head);
 
     }
 
-    int length()
-    {
-        return sz;
-    }
+
+    //inserting a value after an index given by the user
 
 
-    void insertafteranindex(int data,int idx)
+
+
+    void insertAtAnIndex(int data,int idx)
     {
-        sz++;
+
         if(idx==0)
         {
-            insertvalue(data);
+            insertAValueAtHead(data);
             return ;
         }
 
@@ -133,7 +149,7 @@ public:
 
 
 
-        node* b=create(data);
+        node* b=createANewNode(data);
 
         b->nxt=a->nxt;
 
@@ -147,6 +163,10 @@ public:
 
 
 
+
+
+
+     //deleting a value from the head
 
     void deleteAtHead()
     {
@@ -165,6 +185,10 @@ public:
         delete a;
 
     }
+
+
+    //deleting a value from a random index
+
 
     void deleteAtAnyIndex(int idx)
     {
@@ -201,26 +225,25 @@ public:
 
 
 
-
-
-
-
-
-
 };
+
+
+
 int main()
 {
 
-    linklist ll;
+    linkedList ll;
+    ll.insertAValueAtHead(5);
+    ll.insertAValueAtHead(6);
+    ll.insertAValueAtHead(7);
+    ll.insertAValueAtHead(8);
+    ll.insertAValueAtHead(9);
+    ll.insertAValueAtHead(10);
 
-    ll.insertvalue(5);
-    ll.insertvalue(6);
-    ll.insertvalue(7);
-    ll.insertvalue(8);
-    ll.insertvalue(9);
-    ll.insertvalue(10);
+
 
     ll.traverse();
+
     cout<<endl;
 
 
@@ -229,9 +252,10 @@ int main()
     ll.reverse();
 
     cout<<endl;
-    ll.insertafteranindex(23,2);
 
-     cout<<"the new linked list is--> "<<endl;
+    ll.insertAtAnIndex(23,2);
+
+     cout<<"the new linked list after an insertion is--> "<<endl;
 
      ll.traverse();
 
@@ -244,16 +268,13 @@ int main()
        ll.traverse();
 
        ll.deleteAtAnyIndex(2);
-       
+
        cout<<endl;
-       
+
        cout<<"the new linked list after any random index deletion is--> "<<endl;
 
        ll.traverse();
 
-
-   // cout<<ll.length();
-   
    return 0;
 
 }
