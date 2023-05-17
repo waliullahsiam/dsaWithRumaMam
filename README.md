@@ -1,1 +1,5 @@
-This is a repository for everyday Dsa practices that we do everyday
+This is a repository for  Dsa practices that we are currently doing together.
+
+
+# we believe---->"Hand in hand we conquer,fragmented we falter"
+
