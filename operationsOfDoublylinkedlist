@@ -1,0 +1,159 @@
+#include<bits/stdc++.h>
+
+
+using namespace std;
+
+class node
+{
+
+public:
+
+    int data;
+
+    node* nxt;
+    node* prev;
+
+
+};
+
+
+class doublyLinkedList
+{
+
+public:
+
+    node* head;
+
+    int sz;
+
+
+    doublyLinkedList()
+    {
+        head=NULL;
+
+        sz=0;
+    }
+
+    node* createNewNode(int val)
+    {
+        node* a= new node;
+
+        a->data=val;
+        a->nxt=NULL;
+        a->prev=NULL;
+
+        return a;
+    }
+
+
+
+    void insertAtHead(int val)
+    {
+        node* a=createNewNode(val);
+
+        if(head==NULL)
+        {
+            head=a;
+            return ;
+        }
+
+        node* b=head;
+
+
+        a->nxt=b;
+
+        b->prev=a;
+
+        head=a;
+
+
+
+
+    }
+
+    void traverse()
+    {
+        if(head==NULL)
+        {
+            cout<<"No value to show\n";
+            return ;
+
+        }
+
+        node* a=head;
+
+        while(a!=NULL)
+        {
+            cout<<a->data<<" ";
+
+            a=a->nxt;
+        }
+
+
+    }
+
+
+    void insertAtAnIndex(int val,int idx)
+    {
+        if(idx==0)
+        {
+            insertAtHead(val);
+            return ;
+        }
+
+
+
+        int current=0;
+
+        node* a=head;
+
+
+
+        while(current!=idx-1)
+        {
+            a=a->nxt;
+
+            current++;
+        }
+
+        node* b=createNewNode(val);
+
+        b->prev=a;
+        b->nxt=a->nxt;
+        a->nxt=b;
+
+
+
+    }
+
+
+
+};
+
+int main()
+{
+
+    doublyLinkedList ll;
+
+    ll.insertAtHead(5);
+    ll.insertAtHead(6);
+    ll.insertAtHead(7);
+    ll.insertAtHead(8);
+    ll.insertAtHead(9);
+
+
+
+    ll.insertAtAnIndex(10,2);
+
+
+    ll.traverse();
+
+    return 0;
+
+
+
+
+
+
+
+}
