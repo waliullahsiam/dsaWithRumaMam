@@ -49,6 +49,8 @@ public:
 
     void insertAtHead(int val)
     {
+
+        sz++;
         node* a=createNewNode(val);
 
         if(head==NULL)
@@ -101,13 +103,13 @@ public:
             return ;
         }
 
+        sz++;
+
 
 
         int current=0;
 
-        node* a=head;
-
-
+        node* a =head;
 
         while(current!=idx-1)
         {
@@ -115,6 +117,7 @@ public:
 
             current++;
         }
+
 
         node* b=createNewNode(val);
 
@@ -124,6 +127,105 @@ public:
 
 
 
+
+
+
+    }
+
+    void deleteAtAnIndex(int idx)
+    {
+
+        node* a=head;
+
+        if(idx==0)
+        {
+            head=a->nxt;
+
+            delete a;
+            sz--;
+
+            return ;
+        }
+
+        int current=0;
+
+
+        if(idx==sz)
+        {
+            while(current!=idx-1)
+            {
+                a=a->nxt;
+                current++;
+            }
+
+            node* b=a->nxt;
+
+            delete b;
+
+            sz--;
+            return;
+        }
+
+
+        while(current!=idx)
+        {
+            a=a->nxt;
+            current++;
+
+        }
+
+        node* b=a->prev;
+
+        node* c=a->nxt;
+
+        b->nxt= c;
+        c->prev= b;
+
+        delete a;
+
+        sz--;
+
+
+
+
+    }
+
+    void reverseList()
+    {
+
+        node* a= head;
+        node* b= head;
+
+        int current=0;
+
+        while(current!=sz-1)
+        {
+            b=b->nxt;
+
+            current++;
+
+        }
+
+
+
+        while(a!=NULL)
+        {
+
+            swap(a->nxt,a->prev);
+
+            a=a->prev;
+
+        }
+
+        head=b;
+
+
+
+    }
+
+    int length()
+    {
+        return sz;
     }
 
 
@@ -145,7 +247,29 @@ int main()
 
     ll.insertAtAnIndex(10,2);
 
+    cout<<"Before deletion--->"<<endl;
 
+    ll.traverse();
+
+    cout<<"\n";
+
+    cout<<"size-->";
+
+    cout<<ll.length();
+
+    cout<<"\n";
+
+    cout<<"After deletion--->"<<endl;
+
+    ll.deleteAtAnIndex(4);
+
+
+    ll.traverse();
+
+    cout<<endl;
+
+
+    ll.reverseList();
     ll.traverse();
 
     return 0;
