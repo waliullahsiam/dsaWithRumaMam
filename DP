@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int N=2e5+10;
+
+long long wt[105],val[105];
+long long dp[100][100005];
+
+
+int func(int index,int wt_left)
+{   //we didn't take the values
+
+    if(index<=0)
+    {
+        return 0;
+    }
+    if(wt_left==0)
+    {
+        return 0;
+    }
+
+    if(dp[index][wt_left]!=-1)
+     {
+         return dp[index][wt_left];
+     }
+
+    //didn't take any index
+   long long ans=func(index-1,wt_left);
+    //took an index
+
+    if(wt_left-wt[index]>=0)
+
+   ans= max(ans,func(index-1,wt_left-wt[index]+val[index]));
+
+
+    return dp[index][wt_left]=ans;
+}
+
+int main()
+{
+    //pick it up or don't pick it up(knapsack -0-1)
+
+    memset(dp,-1,sizeof(dp));
+
+    long long w,n;
+
+    cin>>w>>n;
+
+    for(int i=0;i<n;i++)
+    {
+        cin>>wt[i]>>val[i];
+
+    }
+
+    cout<<func(n-1,w);
+
+
+}
